@@ -1,0 +1,184 @@
+/* src/components/WhoWeAre.css */
+
+/* === 1. ЗАГАЛЬНІ СТИЛІ === */
+.who-section {
+  width: 100%;
+  min-height: 100vh;
+  padding: 100px 0; 
+  background-color: #050f0e; 
+  position: relative; 
+  overflow: hidden; 
+  z-index: 1; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.who-section::before, .who-section::after {
+  content: '';
+  position: absolute;
+  z-index: -1; 
+  filter: blur(150px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+.who-section::before { 
+  width: 30vw; height: 30vw; 
+  background: radial-gradient(circle, #50f8c8, transparent 60%);
+  top: 10%; left: 5%;
+}
+.who-section::after { 
+  width: 30vw; height: 30vw; 
+  background: radial-gradient(circle, #3ca4ff, transparent 60%);
+  top: 30%; right: 5%;
+}
+
+.photo {
+  width: 100%; 
+  height: auto; 
+  border-radius: 1.5vw; 
+  object-fit: cover;
+  display: block;
+}
+
+button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  border-radius: 2vw;
+  padding: 0.5vw 1.2vw;
+  cursor: pointer;
+  font-size: 0.75vw; 
+  transition: all 0.25s;
+}
+button:hover { background: rgba(255, 255, 255, 0.25); }
+
+.media-logo-bar {
+  width: 90%;
+  max-width: 1800px;
+  margin: 5vw auto 0 auto;
+  padding-top: 2vw;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4vw; 
+}
+.media-logo-bar img {
+  height: 1.2vw; 
+  width: auto;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+.media-logo-bar img:hover { opacity: 1; }
+
+
+/* === 2. СТИЛІ ДЛЯ ВЕЛИКИХ ЕКРАНІВ (ДЕСКТОП) === */
+@media (min-width: 901px) {
+    .who-inner {
+      /* NEW: Використовуємо grid-template-areas для чіткого макету */
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+        "person1 person2"
+        "content content"; /* Зона для контенту, що випадає */
+      align-items: flex-start;
+      width: 90%; 
+      max-width: 1800px;
+      margin: 0 auto;
+      gap: 0 4%; /* Залишаємо тільки горизонтальний відступ */
+    }
+
+    /* NEW: Призначаємо елементи до їх зон */
+    .who-block.left { grid-area: person1; }
+    .who-block.right { grid-area: person2; }
+    /* Всі блоки контенту відправляємо в зону "content" */
+    .who-inner > .expanded-content-wrapper { 
+      grid-area: content;
+      margin-top: 4vw; /* Додаємо відступ зверху */
+    }
+
+    .who-block {
+      display: flex;
+      align-items: center;
+      gap: 5%; 
+    }
+    
+    .photo-wrapper { width: 50%; }
+    .text-side { width: 45%; color: white; }
+    .text-side.left { text-align: right; }
+    .text-side.right { text-align: left; }
+    
+    .text-side h1 { font-size: 3vw; font-weight: 800; line-height: 1; margin-bottom: 1vw; }
+    .role { font-size: 0.9vw; opacity: 0.9; margin-bottom: 1vw; text-transform: uppercase; letter-spacing: 0.1vw; }
+    .desc { font-size: 0.85vw; line-height: 1.5; opacity: 0.85; margin-bottom: 1.5vw; }
+    
+    .expanded-text-content, .expanded-video-content {
+      width: 60%; 
+      margin: 0 auto;
+      text-align: left;
+      font-size: 0.9vw; 
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .expanded-text-content p, .video-text-bottom p, .video-text-top { margin-bottom: 1.5em; }
+    
+    .video-player-container { width: 100%; margin-bottom: 2vw; background: #000; border-radius: 1vw; overflow: hidden; }
+    .video-player-container video { width: 100%; display: block; }
+}
+
+
+/* === 3. АДАПТИВНІ СТИЛІ ДЛЯ ПЛАНШЕТІВ І ТЕЛЕФОНІВ === */
+@media (max-width: 900px) {
+    .who-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0; /* Прибираємо, бо відступи є в .who-block */
+        width: 100%;
+    }
+
+    .who-block {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        gap: 30px;
+        margin-bottom: 60px; /* Вертикальний відступ між блоками */
+    }
+    /* Забираємо відступ у останнього блоку */
+    .who-block:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .who-block.left { flex-direction: column-reverse; }
+    
+    .photo-wrapper, .text-side { width: 100%; }
+    .photo { border-radius: 20px; }
+    .text-side.left, .text-side.right { text-align: center; }
+
+    .text-side h1 { font-size: 2.5rem; }
+    .role { font-size: 0.8rem; letter-spacing: 1px; }
+    .desc { font-size: 1rem; opacity: 0.9; }
+    button { font-size: 0.9rem; padding: 12px 28px; border-radius: 30px; }
+
+    .expanded-content-wrapper {
+        width: 90%;
+        margin-top: 40px;
+        margin-bottom: 60px; /* Додаємо відступ після контенту */
+    }
+    .expanded-text-content, .expanded-video-content {
+        width: 100%;
+        font-size: 1rem;
+    }
+    .video-player-container { border-radius: 15px; }
+
+    .media-logo-bar {
+        margin-top: 60px;
+        padding-top: 30px;
+        gap: 30px;
+        flex-wrap: wrap;
+    }
+    .media-logo-bar img { height: 25px; }
+}

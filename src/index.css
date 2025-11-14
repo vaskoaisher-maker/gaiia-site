@@ -1,0 +1,122 @@
+/* src/index.css */
+
+/* 1. Базове Скидання та Загальні Стилі */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Arial', 'Helvetica Neue', sans-serif; 
+  overflow-x: hidden; 
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 2. Стилі для Header (СКЛЯНИЙ ЕФЕКТ + ШИКАРНИЙ ВИГЛЯД) */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 50px; 
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  z-index: 1000; 
+  
+  /* Glassmorphism */
+  background-color: rgba(0, 0, 0, 0.2); /* Трохи темніша підкладка для контрасту */
+  backdrop-filter: blur(15px); /* Більше розмиття */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+  
+  color: #fff;
+  transition: all 0.3s ease;
+  text-shadow: none; 
+}
+
+/* Логотип */
+.logo-text {
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 3px;
+  transition: opacity 0.3s;
+  cursor: pointer; 
+  text-transform: uppercase;
+}
+.logo-text:hover {
+  opacity: 0.8;
+}
+
+/* Навігація */
+.nav {
+    display: flex;
+    gap: 15px; /* Відстань між кнопками */
+    align-items: center;
+}
+
+/* === СТИЛЬНІ КНОПКИ (CHIC STYLE) === */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  
+  /* Розміри та шрифт */
+  font-size: 0.75rem; /* Акуратний невеликий шрифт */
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  
+  /* Форма кнопки (пігулка) */
+  padding: 10px 24px; /* Підкладочка */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Тонка рамка */
+  border-radius: 50px; /* Закруглені краї */
+  background-color: rgba(255, 255, 255, 0.05); /* Ледь помітний фон */
+  
+  /* Анімація */
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  white-space: nowrap; /* ЗАБОРОНЯЄМО ПЕРЕНЕСЕННЯ ТЕКСТУ */
+}
+
+/* Ефект при наведенні (HOVER) */
+.nav-link:hover {
+    background-color: #fff; /* Заливка білим */
+    color: #000; /* Текст стає чорним */
+    border-color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4); /* Світіння навколо */
+    transform: translateY(-2px); /* Легке підняття */
+}
+
+
+/* === 3. АДАПТИВНІСТЬ (MOBILE HEADER) === */
+@media (max-width: 768px) {
+  .header {
+    /* Зменшуємо відступи самого Хедера */
+    padding: 15px 20px; 
+  }
+
+  .logo-text {
+    /* Трохи менший логотип */
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+  }
+
+  .nav {
+    gap: 8px; /* Менша відстань між кнопками */
+  }
+
+  .nav-link {
+    /* Зменшуємо шрифт та кнопку для телефону */
+    font-size: 0.65rem; /* Маленький, але читабельний шрифт (прибл. 10-11px) */
+    padding: 8px 14px; /* Менша підкладка */
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}

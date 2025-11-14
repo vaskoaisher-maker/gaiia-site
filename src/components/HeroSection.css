@@ -1,0 +1,148 @@
+/* src/components/HeroSection.css */
+
+/* === 1. СТИЛІ ДЛЯ ВЕЛИКИХ ЕКРАНІВ (ДЕСКТОП) === */
+.hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 0;
+}
+
+.hero-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  object-fit: cover;
+  filter: grayscale(10%) brightness(50%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 90%;
+  text-align: center;
+  padding: 0 20px; /* Додаємо відступи про всяк випадок */
+}
+
+.hero-logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+.hero-logo-container .main-text {
+    font-size: 5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+.vertical-divider {
+    height: 50px;
+    width: 2px;
+    background-color: white;
+    margin: 0 20px;
+    transition: all 0.3s; /* Додаємо для плавності */
+}
+
+.logo-text-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.logo-text-right .foundation {
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.logo-text-right .tagline {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-footer {
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 50px;
+    z-index: 11;
+}
+
+.social-icons a {
+    margin-left: 20px;
+    font-size: 1.2rem;
+    opacity: 1;
+    transition: opacity 0.3s;
+    font-weight: 400;
+    color: #fff;
+}
+.social-icons a:hover {
+    opacity: 0.7;
+}
+
+
+/* === 2. АДАПТИВНІ СТИЛІ ДЛЯ ПЛАНШЕТІВ І ТЕЛЕФОНІВ === */
+/* Використовуємо 768px як точку зламу, бо логотип досить широкий */
+@media (max-width: 768px) {
+
+    .hero-logo-container {
+        /* Ставимо елементи один під одним */
+        flex-direction: column;
+        gap: 20px; /* Додаємо вертикальний відступ */
+    }
+
+    /* Приховуємо вертикальну лінію на мобільних */
+    .vertical-divider {
+        display: none;
+    }
+    
+    /* Центруємо текст "Foundation" і підпис */
+    .logo-text-right {
+        align-items: center;
+    }
+
+    /* Зменшуємо розміри шрифтів */
+    .hero-logo-container .main-text {
+        font-size: 3rem; /* 5rem -> 3rem */
+        letter-spacing: 3px;
+    }
+
+    .logo-text-right .foundation {
+        font-size: 1.8rem; /* 2.5rem -> 1.8rem */
+    }
+
+    .logo-text-right .tagline {
+        font-size: 0.8rem; /* 1rem -> 0.8rem */
+        letter-spacing: 0.5px;
+    }
+
+    /* Центруємо соціальні іконки */
+    .hero-footer {
+        justify-content: center;
+        padding: 0 20px;
+        bottom: 40px;
+    }
+}
