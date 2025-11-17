@@ -86,7 +86,8 @@ const WhatWeDo = () => {
           <div className="card-image-wrapper">
             <img src={GaiiaIncentiveImg} alt="GAIIA Incentive System" />
           </div>
-          <button className="card-button">Learn more</button>
+            {/* <button className="card-button">Learn more</button> */} {/* <-- ТЕПЕР ВІН ЗАКОМЕНТОВАНИЙ */}
+
         </div>
 
         <div className="what-we-do-card" onClick={() => setActiveModal(2)}>
@@ -94,7 +95,7 @@ const WhatWeDo = () => {
           <div className="card-image-wrapper">
             <img src={TrillionTreesImg} alt="3 Trillion Trees" />
           </div>
-          <button className="card-button">Learn more</button>
+          {/* <button className="card-button">Learn more</button> */} {/* <-- ТЕПЕР ВІН ТЕЖ ЗАКОМЕНТОВАНИЙ */}
         </div>
       </div>
 
