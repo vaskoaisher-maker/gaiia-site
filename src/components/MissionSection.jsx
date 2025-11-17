@@ -63,17 +63,18 @@ const MissionSection = () => {
         {/* ЛІВА ЧАСТИНА (G.Λ.I.I.Λ. + Subtitle + Button) */}
         <div className="mission-left">
              <motion.h1 className='mission-main-title' variants={textVariants}>
-                 {/* Вибіркова прозорість для логотипу: G та Λ білі, решта прозоріші */}
-                 {logoLetters.map((letter, index) => (
-                    <motion.span 
-                        key={index} 
-                        style={{ display: "inline-block" }}
-                        className={ (index === 0 || index === 1) ? '' : 'semi-transparent-letter'} // G та Λ (0 та 1) білі
-                    >
-                        {letter === " " ? "\u00A0" : letter}
-                    </motion.span>
-                ))}
-             </motion.h1>
+    {/* Вибіркова прозорість для логотипу: ТІЛЬКИ G біла, решта прозоріші */}
+    {logoLetters.map((letter, index) => (
+       <motion.span 
+           key={index} 
+           style={{ display: "inline-block" }}
+           className={ (index === 0) ? '' : 'semi-transparent-letter'} /* <-- ЗМІНА ТУТ */
+       >
+           {letter === " " ? "\u00A0" : letter}
+       </motion.span>
+   ))}
+</motion.h1>
+
              
              <motion.p className='mission-subtitle' variants={textVariants}>
                  {subtitle}

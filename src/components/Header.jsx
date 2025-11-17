@@ -1,12 +1,14 @@
 import React from 'react';
-// import { Link } from 'react-scroll'; // Цей імпорт більше не потрібен, якщо немає скрол-посилань
+// <-- 1. Імпортуємо ваш новий логотип
+import logo from '../assets/logos/gaiia-logo.svg'; 
 
 const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <a href="/" className="logo-text">
-            GAIIA
+        <a href="/" className="logo-link"> {/* Змінили клас для кращої семантики */}
+            {/* <-- 2. Замінюємо текст на зображення */}
+            <img src={logo} alt="GAIIA Logo" className="logo-img" />
         </a>
       </div>
       
@@ -15,8 +17,7 @@ const Header = () => {
             WHO WE ARE
         </a>
         
-        {/* === ЗМІНЕНО: ТЕПЕР ВЕДЕ НА НОВУ СТОРІНКУ === */}
-        <a href="/what-we-do" className="nav-link">
+              <a href="/what-we-do" className="nav-link">
             WHAT WE DO
         </a>
       </nav>

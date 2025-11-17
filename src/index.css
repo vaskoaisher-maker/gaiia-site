@@ -54,6 +54,23 @@ a {
 .logo-text:hover {
   opacity: 0.8;
 }
+/* Замість старих стилів для .logo-text, використовуйте це */
+
+.logo-link {
+  display: flex; /* Для кращого вирівнювання зображення */
+  align-items: center;
+}
+
+.logo-img {
+  height: 40px; /* <-- ОСНОВНИЙ ПАРАМЕТР: Встановіть потрібну висоту логотипа */
+  width: auto; /* Ширина підлаштується автоматично */
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+
+.logo-img:hover {
+  opacity: 0.8;
+}
 
 /* Навігація */
 .nav {
