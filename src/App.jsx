@@ -1,65 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
-// Імпортуємо загальні компоненти (вони будуть на всіх сторінках)
+// Імпортуємо компоненти
 import Header from './components/Header';
 import FixedFooter from './components/FixedFooter';
-
-// Імпортуємо наші сторінки
-import MainPage from './components/MainPage'; // Наша нова головна сторінка
-import WhoWeAre from './components/WhoWeAre'; // Ваша сторінка "Про нас"
-import WhatWeDo from './components/WhatWeDo'; // <--- 1. ДОДАНО НОВУ СТОРІНКУ
+import MainPage from './components/MainPage';
+import WhoWeAre from './components/WhoWeAre';
+import WhatWeDo from './components/WhatWeDo';
+import AdminPage from './components/AdminPage'; // <-- НОВИЙ ІМПОРТ
 
 function App() {
-  // Стан 'isLight' тепер живе тут, у App.jsx
   const [isFooterLight, setIsFooterLight] = useState(false);
-
-  // Отримуємо поточний шлях (URL), щоб скинути колір футера
   const location = useLocation();
 
+  // Перевірка: чи ми зараз в адмінці?
+  const isAdminRoute = location.pathname === '/admin-panel';
+
   useEffect(() => {
-    // Якщо ми переходимо НЕ на головну сторінку,
-    // скидаємо колір іконок на дефолтний (темний фон)
     if (location.pathname !== '/') {
       setIsFooterLight(false);
     }
-
-    // Також прокручуємо сторінку догори при переході
     window.scrollTo(0, 0);
-
-  }, [location.pathname]); // Ефект спрацьовує при зміні URL
+  }, [location.pathname]);
 
   return (
     <>
-      {/* Header буде на ВСІХ сторінках */}
-      <Header />
+      {/* Ховаємо Header, якщо ми в адмінці */}
+      {!isAdminRoute && <Header />}
 
-      {/* Тут React Router буде "малювати" потрібну сторінку */}
       <Routes>
-
-        {/* МАРШРУТ 1: Головна сторінка */}
         <Route
           path="/"
           element={<MainPage setIsFooterLight={setIsFooterLight} />}
         />
-
-        {/* МАРШРУТ 2: Сторінка "Про нас" */}
         <Route
           path="/who-we-are"
           element={<WhoWeAre />}
         />
-
-        {/* МАРШРУТ 3: Сторінка "Що ми робимо" <--- 2. ДОДАНО МАРШРУТ */}
         <Route
           path="/what-we-do"
           element={<WhatWeDo />}
         />
+        
+        {/* <-- НОВИЙ МАРШРУТ */}
+        <Route
+          path="/admin-panel"
+          element={<AdminPage />}
+        />
 
       </Routes>
 
-      {/* FixedFooter буде на ВСІХ сторінках */}
-      {/* Ми передаємо йому стан, щоб він знав, коли міняти колір */}
-      <FixedFooter isLight={isFooterLight} />
+      {/* Ховаємо Footer, якщо ми в адмінці */}
+      {!isAdminRoute && <FixedFooter isLight={isFooterLight} />}
     </>
   )
 }
